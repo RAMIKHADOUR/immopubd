@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription-Page{% endblock %}
+
+
+{% block body %}
+<br><br><br>
+{% for flash_error in app.flashes('verify_email_error') %}
+<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
+<link rel="stylesheet" href="{{asset('assets/css/register.css')}}">
+<section class="mb-4">
+    <div class="container">
+        <div class="text-white fw-bold" style="border-radius: 25px;">
+            <div class="p-md-4">
+                <div class="row justify-content-center">
+
+                    <p class="text-center h1 fw-bold mb-4 text-dark">Inscription</p>
+
+                    {{ form_errors(registrationForm) }}
+
+                    {{ form_start(registrationForm) }}
+                    <div class="row text-dark">
+                        <div class="col-6">
+                            {{ form_row(registrationForm.nom) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(registrationForm.prenom) }}
+                        </div>
+                      
+                        <div class="col-6">
+                            {{ form_row(registrationForm.email) }}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(registrationForm.plainPassword.first)}}
+                        </div>
+                        <div class="col-6">
+                            {{ form_row(registrationForm.plainPassword.second)}}
+                        </div>
+
+                        <div class="form-group">
+                            <a href=""><div class="form-check">{{ form_row(registrationForm.agreeTerms) }}  </a>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-success" role="button">Register</button>
+                        </div>
+                    </div>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
