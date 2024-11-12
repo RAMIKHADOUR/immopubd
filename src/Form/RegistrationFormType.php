@@ -26,6 +26,11 @@ class RegistrationFormType extends AbstractType
                  
             'constraints'=>[new NotBlank(),new Assert\Length(['min'=>2,'max'=> 50])]])
 
+            ->add('tele_mobile',TextType::class,[
+                'attr'=>['class'=>'form-control',],
+                'label_attr'=>['class'=>'form-label'],
+                'constraints'=>[new Assert\NotBlank()]])
+
             ->add('prenom', TextType::class,[
             'attr'=>['class'=>'form-control','minlength'=>'2','maxlength'=>'50','placeholder' => 'prenom',],
             'constraints'=>[new NotBlank(),new Assert\Length(['min'=>2,'max'=> 50])]])
