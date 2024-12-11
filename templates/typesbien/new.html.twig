@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Typesbien{% endblock %}
+
+{% block body %}
+    <h1>Create new Typesbien</h1>
+
+    {{ include('typesbien/_form.html.twig') }}
+
+    <a href="{{ path('app_typesbien_index') }}">back to list</a>
+{% endblock %}

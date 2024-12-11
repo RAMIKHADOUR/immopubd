@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InfoPerso index{% endblock %}
+
+{% block body %}
+<br><br><br><br><br>
+    <h1>InfoPerso</h1>
+
+    <table class="table table-bordered m-4">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Civilite</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Email</th>
+                <th scope="col">Tele_fixe</th>
+                <th scope="col">Tele_mobile</th>
+                <th scope="col">UpdatedAt</th>
+                <th scope="col">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for info_perso in info_persos %}
+            <tr class="table-success">
+                <th scope="row">{{ info_perso.id }}</th>
+                <td>{{ info_perso.civilite }}</td>
+                <td>{{ info_perso.nom }}</td>
+                <td>{{ info_perso.prenom }}</td>
+                <td>{{ info_perso.email }}</td>
+                <td>{{ info_perso.teleFixe }}</td>
+                <td>{{ info_perso.teleMobile }}</td>
+                <td>{{ info_perso.updatedAt ? info_perso.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_info_perso_show', {'id': info_perso.id}) }}">show</a>
+                    <a href="{{ path('app_info_perso_edit', {'id': info_perso.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_info_perso_new') }}">Create new</a>
+{% endblock %}
+
+

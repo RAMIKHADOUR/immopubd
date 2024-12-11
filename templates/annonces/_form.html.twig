@@ -1,0 +1,232 @@
+
+<div class="container m-5">
+{{ form_start(form) }}
+
+<div class="container">
+    <div class="card mb-4">
+        <div class="row m-4">
+            <h3 class="m-4 text-center text-success">Coordonnées</h3>
+            <div class="form-group col-6">
+                {{ form_label(form.property.infosperso.civilite) }}
+                {{ form_widget(form.property.infosperso.civilite) }}
+                <div class="form-error">
+                    {{ form_errors(form.property.infosperso.civilite) }}
+                </div>
+            </div>
+            <div class="form-group col-6">
+                
+                {{ form_label(form.property.infosperso.nom) }}
+                {{ form_widget(form.property.infosperso.nom) }}
+                <div class="form-error">
+                    
+                    {{ form_errors(form.property.infosperso.nom) }}
+                </div>
+            </div>
+            <div class="form-group col-6">
+                
+                {{ form_label(form.property.infosperso.prenom) }}
+                {{ form_widget(form.property.infosperso.prenom) }}
+                <div class="form-error">
+                    
+                    {{ form_errors(form.property.infosperso.prenom) }}
+                </div>
+            </div>
+            <div class="form-group col-6">
+                
+                {{ form_label(form.property.infosperso.email) }}
+                {{ form_widget(form.property.infosperso.email) }}
+                <div class="form-error">
+                    
+                    {{ form_errors(form.property.infosperso.email) }}
+                </div>
+            </div>
+
+            <div class="form-group col-6">
+                
+                {{ form_label(form.property.infosperso.tele_fixe) }}
+                {{ form_widget(form.property.infosperso.tele_fixe) }}
+                <div class="form-error">
+                    
+                    {{ form_errors(form.property.infosperso.tele_fixe) }}
+                </div>
+            </div>
+            <div class="form-group col-6">
+                
+                {{ form_label(form.property.infosperso.tele_mobile) }}
+                {{ form_widget(form.property.infosperso.tele_mobile) }}
+                <div class="form-error">
+                    
+                    {{ form_errors(form.property.infosperso.tele_mobile) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card mb-4">
+        <div class="row m-4">
+            <h3 class="m-4 m-4 text-center text-success">Infos Détails</h3>
+            <div class="form-group col-6">
+                {{ form_label(form.title) }}
+                {{ form_widget(form.title) }}
+                <div class="form-error">
+                    {{ form_errors(form.title) }}
+                </div>
+            </div>
+            <div class="form-group col-6">
+                {{ form_label(form.reference) }}
+                {{ form_widget(form.reference) }}
+                <div class="form-error">
+                    {{ form_errors(form.reference) }}
+                </div>
+            </div>
+
+            <div class="form-group col-6">
+                {{ form_label(form.property.categorysbien) }}
+                {{ form_widget(form.property.categorysbien) }}
+                <div class="form-error">
+                    {{ form_errors(form.property.categorysbien) }}
+                </div>
+            </div>
+            
+            <div class="form-group col-6">
+                {{ form_label(form.property.typesbien) }}
+                {{ form_widget(form.property.typesbien) }}
+                <div class="form-error">
+                    {{ form_errors(form.property.typesbien) }}
+                </div>
+            </div>
+                    <div class="form-group col-6">
+                        {{ form_label(form.property.surface) }} <span>M²</span>
+                        {{ form_widget(form.property.surface) }}
+                        <div class="form-error">
+                            {{ form_errors(form.property.surface) }}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-6">
+                        {{ form_label(form.property.prix) }} <span>€</span>
+                        {{ form_widget(form.property.prix) }}
+                        <div class="form-error">
+                            {{ form_errors(form.property.prix) }}
+                        </div>
+                    </div>
+                                        <div class="form-group col-3">
+                                            {{ form_label(form.property.chambres) }}
+                                            {{ form_widget(form.property.chambres) }}
+                                            <div class="form-error">
+                                                {{ form_errors(form.property.chambres) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-3">
+                                            {{ form_label(form.property.sallebains) }}
+                                            {{ form_widget(form.property.sallebains) }}
+                                            <div class="form-error">
+                                                {{ form_errors(form.property.sallebains) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-3">
+                                            {{ form_label(form.property.etages) }}
+                                            {{ form_widget(form.property.etages) }}
+                                            <div class="form-error">
+                                                {{ form_errors(form.property.etages) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-3">
+                                            {{ form_label(form.property.numero_etage) }}
+                                            {{ form_widget(form.property.numero_etage) }}
+                                            <div class="form-error">
+                                                {{ form_errors(form.property.numero_etage) }}
+                                            </div>
+                                        </div>
+
+           
+            <div class="form-group col-12">
+            <img src="{{ asset('uploads/' ~ annonce.image) }}" alt="{{ annonce.title }}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card mb-4">
+        <div class="row m-4">
+            <h3 class="m-4 text-center text-success">Installations</h3>
+            <div class="col-3">{{ form_row(form.property.internet, {label_attr: {class: 'checkbox-custom'} }) }}</div>
+            <div class="col-3">{{ form_row(form.property.piscine, {label_attr: {class: 'checkbox-custom'} }) }}</div>
+            <div class="col-3">{{ form_row(form.property.garage, {label_attr: {class: 'checkbox-custom'} }) }}</div>
+            <div class="col-3">{{ form_row(form.property.camera, {label_attr: {class: 'checkbox-custom'} }) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card mb-4">
+        <div class="row m-4">
+            <h3 class="m-4 m-4 text-center text-success">Localisation</h3>
+            <div class="form-group col-6">
+                {{ form_label(form.property.adresse.numero_voie) }}
+                {{ form_widget(form.property.adresse.numero_voie) }}
+                <div class="form-error">
+                    {{ form_errors(form.property.adresse.numero_voie) }}
+                </div>
+            </div>
+
+            <div class="form-group col-6">
+                {{ form_label(form.property.adresse.type_voie) }}
+                {{ form_widget(form.property.adresse.type_voie) }}
+                <div class="form-error">
+                    {{ form_errors(form.property.adresse.type_voie) }}
+                </div>
+            </div>
+            <div class="form-group col-6">
+                {{ form_label(form.property.adresse.voie) }}
+                {{ form_widget(form.property.adresse.voie) }}
+                <div class="form-error">
+                    {{ form_errors(form.property.adresse.voie) }}
+                </div>
+            </div>
+            <div class="form-group col-6">
+                {{ form_label(form.property.adresse.ville) }}
+                {{ form_widget(form.property.adresse.ville) }}
+                <div class="form-error">
+                    {{ form_errors(form.property.adresse.ville) }}
+                </div>
+            </div>
+
+            <div class="form-group col-6">
+                {{ form_label(form.property.adresse.code_postale) }}
+                {{ form_widget(form.property.adresse.code_postale) }}
+                <div class="form-error">
+                {{ form_errors(form.property.adresse.code_postale) }}
+                </div>
+            </div>
+
+            <div class="form-group col-6">
+                {{ form_label(form.property.adresse.region) }}
+                {{ form_widget(form.property.adresse.region) }}
+                <div class="form-error">
+                {{ form_errors(form.property.adresse.region) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="form-group">
+        {{ form_label(form.property.description) }}
+        {{ form_widget(form.property.description) }}
+        <div class="form-error">
+            {{ form_errors(form.property.description) }}
+        </div>
+    </div>
+    <div class="form-group mt-4">
+        {{ form_widget(form) }}
+        <button class="btn btn-warning">{{ button_label|default('Valider') }}</button>
+        <a href="{{ path('app_propertys_index') }}" class="btn btn-success">Retour à la Liste</a>
+    </div>
+</div>
+
+{{ form_end(form) }}
+
+</div>

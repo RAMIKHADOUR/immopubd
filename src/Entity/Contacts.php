@@ -2,9 +2,13 @@
 
 namespace App\Entity;
 
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ContactsRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactsRepository::class)]
 class Contacts
@@ -23,6 +27,9 @@ class Contacts
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
+     #[ORM\Column(length: 255)]
+    private ?string $sujet = null;
+
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
 
@@ -30,7 +37,19 @@ class Contacts
     private ?string $tel_mobile = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?DateTimeImmutable $createdAt = null;
+
+    /**
+     * @var Collection<int, Annonces>
+     */
+    #[ORM\OneToMany(targetEntity: Annonces::class, mappedBy: 'contact')]
+    private Collection $annonces;
+
+    public function __construct()
+    {
+        $this->annonces = new ArrayCollection();
+         $this->createdAt= new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +124,62 @@ class Contacts
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+
+    
+    }
+
+    /**
+     * @return Collection<int, Annonces>
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonces $annonce): static
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces->add($annonce);
+            $annonce->setContact($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonces $annonce): static
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            // set the owning side to null (unless already changed)
+            if ($annonce->getContact() === $this) {
+                $annonce->setContact(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of sujet
+     *
+     * @return ?string
+     */
+    public function getSujet(): ?string
+    {
+        return $this->sujet;
+    }
+
+    /**
+     * Set the value of sujet
+     *
+     * @param ?string $sujet
+     *
+     * @return self
+     */
+    public function setSujet(?string $sujet): self
+    {
+        $this->sujet = $sujet;
 
         return $this;
     }

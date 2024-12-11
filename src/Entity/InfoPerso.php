@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\InfoPersoRepository;
+use DateTimeImmutable;
+use App\Entity\Propertys;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\InfoPersoRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: InfoPersoRepository::class)]
 class InfoPerso
@@ -32,10 +35,15 @@ class InfoPerso
     private ?string $tele_mobile = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
+    private ?DateTimeImmutable $updatedAt = null;
 
     #[ORM\OneToOne(mappedBy: 'infosperso', cascade: ['persist', 'remove'])]
     private ?Propertys $propertys = null;
+
+     public function __construct()
+    {
+        $this->updatedAt=new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -47,7 +55,7 @@ class InfoPerso
         return $this->civilite;
     }
 
-    public function setCivilite(string $civilite): static
+    public function setCivilite(string $civilite): self
     {
         $this->civilite = $civilite;
 
@@ -147,4 +155,5 @@ class InfoPerso
 
         return $this;
     }
+
 }

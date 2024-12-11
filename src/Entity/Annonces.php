@@ -2,10 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnoncesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Users;
+use App\Entity\Medias;
+use DateTimeImmutable;
+use App\Entity\Propertys;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AnnoncesRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AnnoncesRepository::class)]
 class Annonces
@@ -21,27 +26,26 @@ class Annonces
     #[ORM\Column(length: 255)]
     private ?string $reference = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?DateTimeImmutable $createdAt = null;
+    
+      #[ORM\OneToOne(targetEntity: Propertys::class, cascade: ['persist', 'remove'])]
+    private ?Propertys $property = null;
 
-    #[ORM\OneToOne(mappedBy: 'annonce', cascade: ['persist', 'remove'])]
-    private ?Propertys $propertys = null;
-
-    /**
-     * @var Collection<int, Medias>
-     */
-    #[ORM\OneToMany(targetEntity: Medias::class, mappedBy: 'annonce')]
-    private Collection $medias;
 
     #[ORM\ManyToOne(inversedBy: 'annonces')]
     private ?Users $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'annonces')]
+    private ?Contacts $contact = null;
+
     public function __construct()
     {
-        $this->medias = new ArrayCollection();
+        $this->createdAt= new DateTimeImmutable();
+    
     }
 
     public function getId(): ?int
@@ -97,24 +101,24 @@ class Annonces
         return $this;
     }
 
-    public function getPropertys(): ?Propertys
+    public function getProperty(): ?Propertys
     {
-        return $this->propertys;
+        return $this->property;
     }
 
-    public function setPropertys(?Propertys $propertys): static
+    public function setProperty(?Propertys $property): static
     {
         // unset the owning side of the relation if necessary
-        if ($propertys === null && $this->propertys !== null) {
-            $this->propertys->setAnnonce(null);
+        if ($property === null && $this->property !== null) {
+            $this->property->setAnnonce(null);
         }
 
         // set the owning side of the relation if necessary
-        if ($propertys !== null && $propertys->getAnnonce() !== $this) {
-            $propertys->setAnnonce($this);
+        if ($property !== null && $property->getAnnonce() !== $this) {
+            $property->setAnnonce($this);
         }
 
-        $this->propertys = $propertys;
+        $this->property = $property;
 
         return $this;
     }
@@ -160,4 +164,17 @@ class Annonces
 
         return $this;
     }
+
+    public function getContact(): ?Contacts
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?Contacts $contact): static
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
 }
+

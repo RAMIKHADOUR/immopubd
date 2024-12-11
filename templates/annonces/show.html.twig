@@ -1,0 +1,117 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Propertys{% endblock %}
+
+{% block body %}
+<h1>Propertys</h1>
+<div class="container">
+    <table class="table table-bordered table-hover" style="border-radius:5%;">
+        <tbody>
+
+            <tr class="table-primary">
+                <th scope="row" scope="row">Image</th>
+                <td><img style="width:100PX;" src="{{ asset('uploads/' ~ annonce.image) }}" alt="{{ annonce.title }}" /></td>
+            </tr>
+            <tr class="table-warning">
+                <th scope="row">Title</th>
+                <td>{{ annonce.title }}</td>
+            </tr>
+            
+            <tr class="table-warning">
+            <th scope="row">Referenc</th>
+            <td>{{ annonce.reference }}</td>
+            </tr>
+
+            <tr class="table-warning">
+                <th scope="row">Category</th>
+                <td>{{ annonce.property.categorysbien }}</td>
+            </tr>
+
+            <tr class="table-primary">
+                <th scope="row">Type</th>
+                <td>{{ annonce.property.typesbien }}</td>
+            </tr>
+
+            <tr class="table-warning">
+                <th scope="row">Surface</th>
+                <td>{{ annonce.property.surface }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">Description</th>
+                <td>{{ annonce.property.description }}</td>
+            </tr>
+            {# <tr class="table-warning">
+                <th scope="row">Prix</th>
+                <td>{{ property.prix }}</td>
+            </tr> #}
+            <tr class="table-primary">
+                <th scope="row">Chambres</th>
+                <td>{{ annonce.property.chambres }}</td>
+            </tr>
+            <tr class="table-warning">
+                <th scope="row">Salle_bains</th>
+                <td>{{ annonce.property.sallebains }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">Etages</th>
+                <td>{{ annonce.property.etages }}</td>
+            </tr>
+            <tr class="table-warning">
+                <th scope="row">Numero_etage</th>
+                <td>{{ annonce.property.numeroetage }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">Adresse</th>
+                <td>{{ annonce.property.adresse.numerovoie }} {{ annonce.property.adresse.typevoie }}
+                    {{ annonce.property.adresse.voie }} {{ annonce.property.adresse.ville }}
+                    {{ annonce.property.adresse.codepostale }} {{ annonce.property.adresse.region }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">Internet</th>
+                <td>{{ annonce.property.internet ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">Garage</th>
+                <td>{{ annonce.property.garage ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">Piscine</th>
+                <td>{{ annonce.property.piscine ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr class="table-warning">
+                <th scope="row">Camera</th>
+                <td>{{ annonce.property.camera ? 'Yes' : 'No' }}</td>
+            </tr>
+
+            <tr class="table-primary">
+                <th scope="row">CreatedAt</th>
+                <td>{{ annonce.createdAt ? annonce.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a class="btn btn-warning m-2" href="{{ path('app_annonces_index') }}">Retour à la liste</a>
+
+    <a class="btn btn-primary m-2" href="{{ path('app_annonces_edit', {'id': annonce.id}) }}">Modifier</a>
+
+    {{ include('annonces/_delete_form.html.twig') }}
+
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page-Contact{% endblock %}
+
+{% block body %}
+<br><br><br><br>
+<div class="container">
+    <h2 class="h1-responsive fw-bolder text-center">Contact-nous</h2>
+    <h6 class="text-center w-responsive mx-auto mb-5">Avez-vous des questions? N'hésitez pas à nous contacter
+        directement. Notre équipe reviendra vers vous dans quelques heures pour vous aider.</h6>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-9 mb-md-0">
+
+            {{ form_start(form) }}
+            <!--Grid column-->
+            <div class="row justify-content-center">
+                <div class="form-group col-6">
+                    {{ form_label(form.nom) }}
+                    {{ form_widget(form.nom) }}
+                    <div class="form-error">
+                        {{ form_errors(form.nom) }}
+                    </div>
+                </div>
+
+
+                <div class="form-group col-6">
+                    {{ form_label(form.prenom) }}
+                    {{ form_widget(form.prenom) }}
+                    <div class="form-error">
+                        {{ form_errors(form.prenom) }}
+                    </div>
+                </div>
+
+                <div class="form-group col-6">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                    <div class="form-error">
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+                <div class="form-group col-6">
+                    {{ form_label(form.tel_mobile) }}
+                    {{ form_widget(form.tel_mobile) }}
+                    <div class="form-error">
+                        {{ form_errors(form.tel_mobile) }}
+                    </div>
+                </div>
+
+                <div class="form-group col-12">
+                    {{ form_label(form.sujet) }}
+                    {{ form_widget(form.sujet) }}
+                    <div class="form-error">
+                        {{ form_errors(form.sujet) }}
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    {{ form_label(form.message) }}
+                    {{ form_widget(form.message) }}
+                    <div class="form-error">
+                        {{ form_errors(form.message) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mt-4">
+                {{ form_widget(form) }}
+                <button type="submit" class="btn btn-primary">{{ button_label|default('Envoyer') }}</button>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

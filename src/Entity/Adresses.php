@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\AdressesRepository;
+use DateTimeImmutable;
+use App\Entity\Propertys;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AdressesRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AdressesRepository::class)]
 class Adresses
@@ -32,10 +35,15 @@ class Adresses
     private ?string $region = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
+    private ?DateTimeImmutable $updatedAt = null;
 
     #[ORM\OneToOne(mappedBy: 'adresse', cascade: ['persist', 'remove'])]
     private ?Propertys $propertys = null;
+
+     public function __construct()
+    {
+        $this->updatedAt=new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

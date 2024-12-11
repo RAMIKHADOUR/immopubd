@@ -1,0 +1,30 @@
+<div class="container m-5">
+    {{ form_start(form) }}
+
+    <div class="container">
+        <div class="card mb-4">
+            <div class="row m-4">
+                <h3 class="m-4 m-4 text-center text-success">Infos Détails</h3>
+
+  
+
+                <div class="form-group col-6">
+                    {{ form_label(form.categorie) }}
+                    {{ form_widget(form.categorie) }}
+                    <div class="form-error">
+                        {{ form_errors(form.categorie) }}
+                    </div>
+                </div>
+            </div>
+ 
+
+
+        </div>
+        <div class="form-group mt-4">
+            {{ form_widget(form) }}
+            <button class="btn btn-warning">{{ button_label|default('Valider') }}</button>
+            <a href="{{ path('app_propertys_index') }}" class="btn btn-success">Retour à la Liste</a>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>

@@ -22,44 +22,50 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class,[
-            'attr'=>['class'=>'form-control','minlength'=>'2','maxlength'=>'50', 'placeholder' => 'Nom',],
+                'label' => false,
+            'attr'=>['class'=>'form-control','minlength'=>'2','maxlength'=>'50', 'placeholder' => 'Nom'],
                  
             'constraints'=>[new NotBlank(),new Assert\Length(['min'=>2,'max'=> 50])]])
 
+            ->add('prenom', TextType::class,[
+                'label' => false,
+            'attr'=>['class'=>'form-control','minlength'=>'2','maxlength'=>'50','placeholder' => 'prenom'],
+            'constraints'=>[new NotBlank(),new Assert\Length(['min'=>2,'max'=> 50])]])
+
             ->add('tele_mobile',TextType::class,[
-                'attr'=>['class'=>'form-control',],
+                'label' => false,
+                'attr'=>['class'=>'form-control','placeholder' => 'Tel-Portable'],
                 'label_attr'=>['class'=>'form-label'],
                 'constraints'=>[new Assert\NotBlank()]])
-
-            ->add('prenom', TextType::class,[
-            'attr'=>['class'=>'form-control','minlength'=>'2','maxlength'=>'50','placeholder' => 'prenom',],
-            'constraints'=>[new NotBlank(),new Assert\Length(['min'=>2,'max'=> 50])]])
             
             ->add('email', EmailType::class, [
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Email',
                 ]])
 
             ->add('agreeTerms', CheckboxType::class, [
+            'label' => 'Accepter les Conditions',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
+                          
                     ]),
                 ],
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options'  => [
-                'label' => 'Mot de passe',
+                'label' => false,
                 'attr' => [
-                        'placeholder' => 'Password',
+                        'placeholder' => 'Mot de Passe',
                     ],
                 ],
                 'second_options' => [
-                'label' => 'Confirmer le mot de passe',
+                'label' => false,
                 'attr' => [
-                        'placeholder' => 'Confirmation Password',
+                        'placeholder' => 'Confirmation Mot de Passe',
                     ],
 
                 ],

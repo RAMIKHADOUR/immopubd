@@ -1,0 +1,91 @@
+<div class="container m-5">
+    {{ form_start(form) }}
+
+    <div class="container">
+        <div class="card mb-4">
+            <div class="row m-4">
+                <h3 class="m-4 m-4 text-center text-success">Infos Détails</h3>
+
+                <div class="form-group col-6">
+                    {{ form_label(form.surface) }} <span>M²</span>
+                    {{ form_widget(form.surface) }}
+                    <div class="form-error">
+                        {{ form_errors(form.surface) }}
+                    </div>
+                </div>
+
+                {# <div class="form-group col-6">
+                    {{ form_label(form.prix) }} <span>€</span>
+                    {{ form_widget(form.prix) }}
+                    <div class="form-error">
+                        {{ form_errors(form.prix) }}
+                    </div>
+                </div> #}
+                <div class="container mb-4">
+                    <div class="row">
+                        <div class="form-group col-3">
+                            {{ form_label(form.chambres) }}
+                            {{ form_widget(form.chambres) }}
+                            <div class="form-error">
+                                {{ form_errors(form.chambres) }}
+                            </div>
+                        </div>
+                        <div class="form-group col-3">
+                            {{ form_label(form.sallebains) }}
+                            {{ form_widget(form.sallebains) }}
+                            <div class="form-error">
+                                {{ form_errors(form.sallebains) }}
+                            </div>
+                        </div>
+                        <div class="form-group col-3">
+                            {{ form_label(form.etages) }}
+                            {{ form_widget(form.etages) }}
+                            <div class="form-error">
+                                {{ form_errors(form.etages) }}
+                            </div>
+                        </div>
+                        <div class="form-group col-3">
+                            {{ form_label(form.numero_etage) }}
+                            {{ form_widget(form.numero_etage) }}
+                            <div class="form-error">
+                                {{ form_errors(form.numero_etage) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="card mb-4">
+            <div class="row m-4">
+                <h3 class="m-4 text-center text-success">Installations</h3>
+                <div class="col-4">{{ form_row(form.internet, {label_attr: {class: 'checkbox-custom'} }) }}</div>
+                <div class="col-4">{{ form_row(form.piscine, {label_attr: {class: 'checkbox-custom'} }) }}</div>
+                <div class="col-4">{{ form_row(form.garage, {label_attr: {class: 'checkbox-custom'} }) }}</div>
+                <div class="col-4">{{ form_row(form.camera, {label_attr: {class: 'checkbox-custom'} }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="form-group">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+            <div class="form-error">
+                {{ form_errors(form.description) }}
+            </div>
+        </div>
+        <div class="form-group mt-4">
+            {{ form_widget(form) }}
+            <button class="btn btn-warning">{{ button_label|default('Valider') }}</button>
+            <a href="{{ path('app_propertys_index') }}" class="btn btn-success">Retour à la Liste</a>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>

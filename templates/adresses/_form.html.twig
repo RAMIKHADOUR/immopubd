@@ -1,0 +1,64 @@
+<div class="container m-5">
+    {{ form_start(form) }}
+
+    <div class="container">
+        <div class="card mb-4">
+            <div class="row m-4">
+                <h3 class="m-4 m-4 text-center text-success">Localisation</h3>
+                <div class="form-group col-6">
+                    {{ form_label(form.numero_voie) }}
+                    {{ form_widget(form.numero_voie) }}
+                    <div class="form-error">
+                        {{ form_errors(form.numero_voie) }}
+                    </div>
+                </div>
+
+                <div class="form-group col-6">
+                    {{ form_label(form.voie) }}
+                    {{ form_widget(form.voie) }}
+                    <div class="form-error">
+                        {{ form_errors(form.voie) }}
+                    </div>
+                </div>
+                <div class="form-group col-6">
+                    {{ form_label(form.type_voie) }}
+                    {{ form_widget(form.type_voie) }}
+                    <div class="form-error">
+                        {{ form_errors(form.type_voie) }}
+                    </div>
+                </div>
+                <div class="form-group col-6">
+                    {{ form_label(form.ville) }}
+                    {{ form_widget(form.ville) }}
+                    <div class="form-error">
+                        {{ form_errors(form.ville) }}
+                    </div>
+                </div>
+
+                <div class="form-group col-6">
+                    {{ form_label(form.code_postale) }}
+                    {{ form_widget(form.code_postale) }}
+                    <div class="form-error">
+                        {{ form_errors(form.code_postale) }}
+                    </div>
+                </div>
+
+                <div class="form-group col-6">
+                    {{ form_label(form.region) }}
+                    {{ form_widget(form.region) }}
+                    <div class="form-error">
+                        {{ form_errors(form.region) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="form-group mt-4">
+            {{ form_widget(form) }}
+            <button class="btn btn-warning">{{ button_label|default('Valider') }}</button>
+            <a href="{{ path('app_propertys_index') }}" class="btn btn-success">Retour à la Liste</a>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Categorysbien{% endblock %}
+
+{% block body %}
+    <h1>Edit Categorysbien</h1>
+
+    {{ include('categorysbien/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_categorysbien_index') }}">back to list</a>
+
+    {{ include('categorysbien/_delete_form.html.twig') }}
+{% endblock %}

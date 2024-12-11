@@ -2,9 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\PropertysRepository;
+use App\Entity\Annonces;
+use App\Entity\InfoPerso;
+use App\Entity\Typesbien;
+use App\Entity\Categorysbien;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PropertysRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PropertysRepository::class)]
 class Propertys
@@ -20,6 +25,9 @@ class Propertys
     #[ORM\Column]
     private ?float $surface = null;
 
+     #[ORM\Column]
+    private ?float $prix = null;
+
     #[ORM\Column]
     private ?int $chambres = null;
 
@@ -31,7 +39,6 @@ class Propertys
 
     #[ORM\Column]
     private ?int $numero_etage = null;
-
 
     #[ORM\Column]
     private ?bool $internet = null;
@@ -45,20 +52,20 @@ class Propertys
     #[ORM\Column]
     private ?bool $camera = null;
 
-    #[ORM\ManyToOne(inversedBy: 'propertys')]
-    private ?Categorysbien $category = null;
-
-    #[ORM\ManyToOne(inversedBy: 'propertys')]
-    private ?Typesbien $typebien = null;
-
-    #[ORM\OneToOne(inversedBy: 'propertys', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: Adresses::class, cascade: ['persist', 'remove'])]
     private ?Adresses $adresse = null;
 
-    #[ORM\OneToOne(inversedBy: 'propertys', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: InfoPerso::class, cascade: ['persist', 'remove'])]
     private ?InfoPerso $infosperso = null;
 
-    #[ORM\OneToOne(inversedBy: 'propertys', cascade: ['persist', 'remove'])]
+     #[ORM\OneToOne(targetEntity: Annonces::class, cascade: ['persist', 'remove'])]
     private ?Annonces $annonce = null;
+
+    #[ORM\ManyToOne(targetEntity: Categorysbien::class)]
+    private ?Categorysbien $categorysbien = null;
+
+    #[ORM\ManyToOne(targetEntity: Typesbien::class)]
+    private ?Typesbien $typesbien = null;
 
     public function getId(): ?int
     {
@@ -197,26 +204,26 @@ class Propertys
         return $this;
     }
 
-    public function getCategory(): ?Categorysbien
+    public function getCategorysbien(): ?Categorysbien
     {
-        return $this->category;
+        return $this->categorysbien;
     }
 
-    public function setCategory(?Categorysbien $category): static
+    public function setCategorysbien(?Categorysbien $category): static
     {
-        $this->category = $category;
+        $this->categorysbien = $category;
 
         return $this;
     }
 
-    public function getTypebien(): ?Typesbien
+    public function getTypesbien(): ?Typesbien
     {
-        return $this->typebien;
+        return $this->typesbien;
     }
 
-    public function setTypebien(?Typesbien $typebien): static
+    public function setTypesbien(?Typesbien $typebien): static
     {
-        $this->typebien = $typebien;
+        $this->typesbien = $typebien;
 
         return $this;
     }
@@ -253,6 +260,37 @@ class Propertys
     public function setAnnonce(?Annonces $annonce): static
     {
         $this->annonce = $annonce;
+
+        return $this;
+    }
+     public function __toString(): string
+    {
+      
+        return $this->description;
+      
+    }
+
+
+    /**
+     * Get the value of prix
+     *
+     * @return ?float
+     */
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    /**
+     * Set the value of prix
+     *
+     * @param ?float $prix
+     *
+     * @return self
+     */
+    public function setPrix(?float $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }
